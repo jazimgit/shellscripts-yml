@@ -1,0 +1,35 @@
+--- 
+- hosts: hosts
+  tasks: 
+    - name: http install
+      yum:
+        name: httpd
+        state: present
+    - name: ftp install
+      yum: 
+        name: vsftpd
+        state: present
+    - name: file copy for hello world url
+      copy:
+        src: file/index.html
+        dest: /var/www/html/
+    - name: create directory
+      file:
+        path: /usr/share/
+        state: directory
+    - name: start service 
+      service: 
+        name: httpd
+        state: restarted
+        enabled: yes
+    - name: ftp start 
+      service:
+        name: vsftpd
+        state: restarted
+        enabled: yes 
+    - name: disable firewalld
+      service:
+        name: firewalld
+        state: stopped
+        enabled: no
+         

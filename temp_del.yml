@@ -1,0 +1,17 @@
+---
+- hosts: hosts
+  tasks: 
+    - name: remove httpd
+      yum:
+        name: httpd
+        state: absent
+    - name: remove vsftpd
+      yum: 
+        name: vsftpd
+        state: absent
+    - name: start firewall
+      service:
+        name: firewalld
+        state: started
+        enabled: yes
+ 

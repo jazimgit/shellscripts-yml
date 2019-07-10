@@ -1,0 +1,8 @@
+---
+- hosts: hosts
+  become: yes
+  tasks: 
+    - name: installations
+      yum: 
+        name: git
+        state: absent
